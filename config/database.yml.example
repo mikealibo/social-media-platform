@@ -3,14 +3,22 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
+development_credential: &development_credential
+  username: username
+  password: password
+
 development:
   <<: *default
-  database: boilerplate_development
+  host: 127.0.0.1
+  database: 'boilerplate_development'
+  <<: *development_credential
+
 test:
   <<: *default
-  database: boilerplate_test
+  database: 'boilerplate_test'
+
 production:
   <<: *default
-  database: boilerplate_production
+  database: 'boilerplate_production'
   username: boilerplate
   password: <%= ENV["BOILERPLATE_DATABASE_PASSWORD"] %>
