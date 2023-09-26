@@ -25,7 +25,7 @@ Things you may want to cover:
 
 # FEATURE
 
-* User
+* Access
   - Login/Sign up
   - Forgot/Reset password - Reset password within 6 hours
   - Confirmation of account
