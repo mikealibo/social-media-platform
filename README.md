@@ -22,3 +22,12 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# FEATURE
+
+* User
+  - Login/Sign up
+  - Forgot/Reset password - Reset password within 6 hours
+  - Confirmation of account
+  - Lock/Unlock Account - 3 login failed attempts
+  - Idle in 30 minutes user will logout
