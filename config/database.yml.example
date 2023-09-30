@@ -10,15 +10,15 @@ development_credential: &development_credential
 development:
   <<: *default
   host: 127.0.0.1
-  database: 'boilerplate_development'
+  database: 'social_media_platform_development'
   <<: *development_credential
 
 test:
   <<: *default
-  database: 'boilerplate_test'
+  database: 'social_media_platform_test'
 
 production:
   <<: *default
-  database: 'boilerplate_production'
-  username: boilerplate
-  password: <%= ENV["BOILERPLATE_DATABASE_PASSWORD"] %>
+  database: 'social_media_platform_production'
+  username: social_media_platform
+  password: <%= ENV["SOCIAL_MEDIA_PLATFORM_DATABASE_PASSWORD"] %>
