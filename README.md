@@ -27,7 +27,10 @@
 
 * Manage their accounts.
   - Change Email/Username
-  - Change password wih confirm password
+  - Change password
+    - Current Password
+    - New Password
+    - Retype new password
 * Profile creation: 
   - Allow users to create and edit their own personal profiles, including uploading profile pictures and adding bio information.
 * Posts and comments
