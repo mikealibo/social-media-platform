@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "public#index"
+
+  scope module: 'user' do
+    resources :posts, only: [:create]
+  end
+
+  root to: "public#index"
 end

@@ -1,2 +1,4 @@
-%h1 Public#index
-%p Find me in app/views/public/index.html.erb
+- if current_user
+  = render 'public/user_logged_in/index', post: @post, posts: @posts
+- else
+  = render 'public/user_not_logged_in/index'

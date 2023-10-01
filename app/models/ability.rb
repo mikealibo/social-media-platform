@@ -4,6 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    can [:read, :create], Post
     # Define abilities for the user here. For example:
     #
     #   return unless user.present?

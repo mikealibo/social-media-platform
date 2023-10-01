@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, 
          :confirmable, :lockable, :timeoutable, :trackable
 
+  has_many :posts, dependent: :destroy
+
   after_create :assign_default_role
 
   def assign_default_role
