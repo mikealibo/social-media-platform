@@ -1,0 +1,7 @@
+%p= post.content
+%p
+  %small= "- #{post.user.email}"
+= render 'user/posts/actions', post: post
+#comments_form.margin-bottom-1{id: "#{dom_id post}"}
+  = render 'user/comments/form', record: post
+= render 'user/comments/comments', record: post

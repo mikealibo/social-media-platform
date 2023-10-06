@@ -7,14 +7,17 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    %link{crossorigin: "anonymous", href: "https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css", rel: "stylesheet"}
+    %link{crossorigin: "anonymous", href: "https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation-prototype.min.css", rel: "stylesheet"}
+
     = javascript_importmap_tags
   %body
-    %p.notice= notice
-    %p.alert= alert
+    -# %p.notice= notice
+    -# %p.alert= alert
 
     - if user_signed_in?
       = link_to "Sign out", "/users/sign_out", method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }
     - else
       = link_to "Sign In", new_user_session_url
-
-    = yield
+    .grid-container
+      = yield

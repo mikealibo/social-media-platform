@@ -1,0 +1,8 @@
+%b= "Comments (#{record.comments.count})"
+
+- if record.comments.count > 0
+  #comments{id: "#{dom_id record}"}
+    - record.comments.order(id: :desc).each do |comment|
+      = render 'user/comments/comment', comment: comment
+- else 
+  %p.margin-0 There is no comment(s) here.
