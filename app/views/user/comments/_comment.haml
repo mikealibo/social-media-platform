@@ -1,3 +1,6 @@
 %div{id: "#{dom_id comment}"}
-  %p.margin-0= "#{comment.content} - #{comment.user.email}"
-  = render 'user/comments/actions', comment: comment
+  .grid-x.grid-margin-y
+    .cell.large-8
+      %p.margin-0= "#{comment.content} - #{comment.user.email}"
+    .cell.large-4
+      = render 'user/comments/actions', comment: comment

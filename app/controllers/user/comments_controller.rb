@@ -76,7 +76,7 @@ class User::CommentsController < User::BaseController
             turbo_stream.update(@comment, 
               partial: 'user/comments/form',
               locals: { 
-                model: @comment.post,
+                model: [@comment.post, @comment],
                 resource: @comment
               }
             )
