@@ -7,5 +7,8 @@
       %ul
         - record.errors.full_messages.each do |message|
           %li= message
-  = f.input :content, label: false, placeholder: 'Write your comment here...', input_html: { class: 'margin-0', rows: '2' }
-  = f.button :submit, 'Comment', class: 'button small expanded margin-0 font-bold'
+  .grid-x
+    .cell.large-10
+      = f.input :content, label: false, placeholder: 'Write your comment here...', input_html: { class: 'margin-0' }
+    .cell.large-2
+      = f.button :submit, 'Comment', class: 'button small expanded margin-0 font-bold height-100'

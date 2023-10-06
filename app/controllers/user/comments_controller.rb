@@ -11,13 +11,13 @@ class User::CommentsController < User::BaseController
       if @comment.save
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.prepend("comments_post_#{@post.id}", 
-              partial: 'user/comments/comment', 
+            turbo_stream.update("comments_post_#{@post.id}",
+              partial: 'user/comments/comments', 
               locals: { 
-                comment: @comment
+                record: @post
               }
             ),
-            turbo_stream.update("comments_form_post_#{@post.id}", 
+            turbo_stream.update("comments_form_post_#{@post.id}",
               partial: 'user/comments/form',
               locals: { 
                 record: @post

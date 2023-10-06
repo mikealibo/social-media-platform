@@ -1,6 +1,6 @@
 .grid-x.grid-margin-x.grid-margin-y
   .cell.large-8
-    %h2 Posts
+    %h4 Posts
     #posts-list
       - if posts.count > 0
         = render 'user/posts/posts', posts: posts
@@ -8,6 +8,6 @@
         %p.margin-0 There is no post(s) here.
   .cell.large-4
     .sticky
-      %h2 Create Post
+      %h4 Create Post
       #posts-form
         = render 'user/posts/form', post: post
