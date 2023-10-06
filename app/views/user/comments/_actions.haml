@@ -1,4 +1,4 @@
-.button-group.margin-bottom-0
+.button-group.margin-bottom-0.align-right
   = link_to 'Edit', edit_post_comment_path(comment.post, comment), data: { turbo_method: :post }, class: 'button clear margin-bottom-0 padding-0' if can?(:edit, comment)
   = link_to 'Delete', post_comment_path(comment.post, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "button clear margin-bottom-0 padding-0" if can?(:destroy, comment)
       
