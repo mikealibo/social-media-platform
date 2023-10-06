@@ -1,0 +1,4 @@
+= button_to 'Edit', edit_post_comment_path(comment.post, comment), method: :post, class: 'button warning' if can?(:edit, comment)
+- if can?(:destroy, comment)
+  = link_to post_comment_path(comment.post, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "button alert" do
+    Delete

@@ -7,7 +7,7 @@ class Ability
     can [:edit, :update, :destroy], Post, user_id: user.id
     can [:read, :create,], Post
 
-
+    can [:edit, :update, :destroy], Comment, user_id: user.id
     can [:read, :create], Comment
   end
 end

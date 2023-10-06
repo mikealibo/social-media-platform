@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   scope module: 'user' do
     resources :posts, except: [:index, :edit] do
       post :edit, on: :member
-      resources :comments, only: [:create]
+      resources :comments, only: [:create, :update, :destroy] do
+        post :edit, on: :member
+      end
     end
   end
 

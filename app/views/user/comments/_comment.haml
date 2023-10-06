@@ -1,1 +1,3 @@
-%p.margin-0= "#{comment.content} - #{comment.user.email}"
+%div{id: "#{dom_id comment}"}
+  %p.margin-0= "#{comment.content} - #{comment.user.email}"
+  = render 'user/comments/actions', comment: comment

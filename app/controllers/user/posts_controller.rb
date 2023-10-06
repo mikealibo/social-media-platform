@@ -39,8 +39,6 @@ class User::PostsController < User::BaseController
             )
           ]
         end
-        format.html { redirect_to @post, notice: "Post was successfully created." }
-        format.json { render :show, status: :created, location: @post }
       else
         format.turbo_stream do
           render turbo_stream: [
@@ -52,8 +50,6 @@ class User::PostsController < User::BaseController
             )
           ]
         end
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
 
@@ -72,8 +68,6 @@ class User::PostsController < User::BaseController
             )
           ]
         end
-        format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
-        format.json { render :show, status: :ok, location: @post }
       else
         format.turbo_stream do
           render turbo_stream: [
@@ -85,8 +79,6 @@ class User::PostsController < User::BaseController
             )
           ]
         end
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -99,8 +91,6 @@ class User::PostsController < User::BaseController
           turbo_stream.remove(@post)
         ]
       end
-      format.html { redirect_back fallback_location: root_path, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

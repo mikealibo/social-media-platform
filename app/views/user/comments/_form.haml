@@ -1,11 +1,11 @@
-= simple_form_for([record, record.comments.build], html: { class: 'margin-top-1' }) do |f|
-  - if record.errors.any?
+= simple_form_for(model, html: { class: 'margin-top-1', id: "#{resource.class.name == "Post" ? "#{dom_id(resource)}" : "post_#{resource.post_id}"}_new_comment" }) do |f|
+  - if resource.errors.any?
     #error_explanation
       %h2
-        = pluralize(record.errors.count, "error")
+        = pluralize(resource.errors.count, "error")
         prohibited this user from being saved:
       %ul
-        - record.errors.full_messages.each do |message|
+        - resource.errors.full_messages.each do |message|
           %li= message
   .grid-x
     .cell.large-10

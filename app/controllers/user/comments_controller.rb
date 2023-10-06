@@ -1,7 +1,22 @@
 # frozen_string_literal: true
 
 class User::CommentsController < User::BaseController
-  before_action :set_post
+  before_action :set_post, only: [:edit, :create, :update]
+  before_action :set_comment, only: [:edit, :update]
+
+  def edit
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(@comment,
+          partial: 'user/comments/form',
+          locals: {
+            model: [@comment.post, @comment],
+            resource: @comment
+          }
+        )
+      end
+    end
+  end
 
   def create
     @comment = @post.comments.build(comment_params)
@@ -17,27 +32,67 @@ class User::CommentsController < User::BaseController
                 record: @post
               }
             ),
-            turbo_stream.update("comments_form_post_#{@post.id}",
+            turbo_stream.replace("post_#{@post.id}_new_comment",
               partial: 'user/comments/form',
               locals: { 
-                record: @post
+                model: [@post, @post.comments.build],
+                resource: @post
               }
             )
           ]
         end
-        format.html { redirect_back fallback_location: root_path, notice: 'Comment was successfully created.' }
       else
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.update("comments_form_post_#{@post.id}", 
+            turbo_stream.replace("post_#{@post.id}_new_comment", 
               partial: 'user/comments/form',
               locals: { 
-                record: @post
+                model: [@post, @post.comments.build],
+                resource: @comment
               }
             )
           ]
         end
-        format.html { redirect_back fallback_location: root_path, notice: 'Comment was not successfully created.' }
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(@comment, 
+              partial: 'user/comments/comment', 
+              locals: { 
+                comment: @comment
+              }
+            )
+          ]
+        end
+      else
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(@comment, 
+              partial: 'user/comments/form',
+              locals: { 
+                model: @comment.post,
+                resource: @comment
+              }
+            )
+          ]
+        end
+      end
+    end
+  end
+
+  def destroy
+    @comment.destroy
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.remove(@comment)
+        ]
       end
     end
   end
@@ -46,6 +101,10 @@ class User::CommentsController < User::BaseController
 
   def set_post
     @post = Post.find(params[:post_id])
+  end
+
+  def set_comment
+    @comment = @post.comments.find(params[:id])
   end
 
   def comment_params
