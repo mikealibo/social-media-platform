@@ -6,9 +6,8 @@ class PublicController < ApplicationController
   private
 
   def user_logged_in
-    @post = current_user.posts.build
-
     @posts = Post.all.order(id: :desc)
+    @post = current_user.posts.build
   end
 
   def user_not_logged_in

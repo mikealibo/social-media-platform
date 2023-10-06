@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :trackable
 
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   after_create :assign_default_role
 
