@@ -1,7 +1,10 @@
 #comments{id: "#{dom_id record}"}
-  %b= "Comments (#{record.comments.count})"
-  - if record.comments.count > 0
-    - record.comments.order(id: :desc).each do |comment|
+  %b= "Comments"
+  - if comments.count > 0
+    - comments.each do |comment|
       = render 'user/comments/comment', comment: comment
   - else 
     %p.margin-0 There is no comment(s) here.
+
+  = link_to 'See all', see_all_post_comments_path(record), data: { turbo_method: :post }, class: 'button clear margin-bottom-0 padding-0' if comments.count == Comment::TOTAL_COMMENTS_TO_DISPLAY && record.comments.count > Comment::TOTAL_COMMENTS_TO_DISPLAY
+  = link_to 'See less', see_less_post_comments_path(record), data: { turbo_method: :post }, class: 'button clear margin-bottom-0 padding-0' if comments.count > Comment::TOTAL_COMMENTS_TO_DISPLAY

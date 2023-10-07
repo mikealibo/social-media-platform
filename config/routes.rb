@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       post :edit, on: :member
       resources :comments, only: [:create, :update, :destroy] do
         post :edit, on: :member
+        post :see_all, on: :collection
+        post :see_less, on: :collection
       end
     end
   end

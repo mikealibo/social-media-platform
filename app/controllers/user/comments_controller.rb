@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User::CommentsController < User::BaseController
-  before_action :set_post, only: [:edit, :create, :update]
+  before_action :set_post, only: [:edit, :create, :update, :see_all, :see_less]
   before_action :set_comment, only: [:edit, :update]
 
   def edit
@@ -29,7 +29,8 @@ class User::CommentsController < User::BaseController
             turbo_stream.update("comments_post_#{@post.id}",
               partial: 'user/comments/comments', 
               locals: { 
-                record: @post
+                record: @post,
+                comments: limit_comments
               }
             ),
             turbo_stream.replace("post_#{@post.id}_new_comment",
@@ -97,6 +98,38 @@ class User::CommentsController < User::BaseController
     end
   end
 
+  def see_all
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update("comments_post_#{@post.id}",
+            partial: 'user/comments/comments',
+            locals: {
+              record: @post,
+              comments: @post.comments.order(id: :desc)
+            }
+          )
+        ]
+      end
+    end
+  end
+
+  def see_less
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update("comments_post_#{@post.id}",
+            partial: 'user/comments/comments',
+            locals: {
+              record: @post,
+              comments: limit_comments
+            }
+          )
+        ]
+      end
+    end
+  end
+
   private
 
   def set_post
@@ -109,5 +142,9 @@ class User::CommentsController < User::BaseController
 
   def comment_params
     params.require(:comment).permit(:content)
+  end
+
+  def limit_comments
+    @post.total_comments_to_display.order(id: :desc)
   end
 end
