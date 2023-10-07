@@ -26,11 +26,10 @@ class User::CommentsController < User::BaseController
       if @comment.save
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.update("comments_post_#{@post.id}",
-              partial: 'user/comments/comments', 
+            turbo_stream.prepend("comments_post_#{@post.id}",
+              partial: 'user/comments/comment', 
               locals: { 
-                record: @post,
-                comments: limit_comments
+                comment: @comment
               }
             ),
             turbo_stream.replace("post_#{@post.id}_new_comment",

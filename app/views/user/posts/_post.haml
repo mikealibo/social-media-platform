@@ -3,4 +3,6 @@
   %small= "- #{post.user.email}"
 = render 'user/posts/actions', post: post
 = render 'user/comments/form', model: [post, post.comments.build], resource: post
+
+%b= "Comments"
 = render 'user/comments/comments', record: post, comments: post.total_comments_to_display.order(id: :desc)
