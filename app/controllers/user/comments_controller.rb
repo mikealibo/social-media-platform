@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User::CommentsController < User::BaseController
+  load_and_authorize_resource
+
   before_action :set_post, only: [:edit, :create, :update, :see_all, :see_less]
   before_action :set_comment, only: [:edit, :update]
 

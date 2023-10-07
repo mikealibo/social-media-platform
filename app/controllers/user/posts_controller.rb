@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User::PostsController < User::BaseController
+  load_and_authorize_resource
+
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def show; end
