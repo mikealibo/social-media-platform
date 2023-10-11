@@ -62,9 +62,9 @@ class User::PostsController < User::BaseController
       if @post.update(post_params)
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace(@post, 
+            turbo_stream.update(@post, 
               partial: 'user/posts/post', 
-              locals: { 
+              locals: {
                 post: @post
               }
             )
