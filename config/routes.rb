@@ -13,5 +13,7 @@ Rails.application.routes.draw do
     end
   end
 
+  
+
   root to: "public#index"
 end
