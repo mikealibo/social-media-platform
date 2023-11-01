@@ -27,15 +27,15 @@ class User::PostsController < User::BaseController
       if @post.save
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.prepend('posts', 
-              partial: 'user/posts/styled/post', 
-              locals: { 
+            turbo_stream.prepend('posts',
+              partial: 'user/posts/styled/post',
+              locals: {
                 post: @post
               }
             ),
-            turbo_stream.update('posts-form', 
+            turbo_stream.update('posts-form',
               partial: 'user/posts/form',
-              locals: { 
+              locals: {
                 post: current_user.posts.build
               }
             )
@@ -44,9 +44,9 @@ class User::PostsController < User::BaseController
       else
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.update('posts-form', 
+            turbo_stream.update('posts-form',
               partial: 'user/posts/form',
-              locals: { 
+              locals: {
                 post: @post
               }
             )

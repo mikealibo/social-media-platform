@@ -1,4 +1,12 @@
-- if current_user
-  = render 'public/user_logged_in/index', post: @post, posts: @posts
-- else
-  = render 'public/user_not_logged_in/index'
+.grid-x.grid-margin-x.grid-margin-y.margin-top-1
+  .cell.large-8.large-offset-2
+    .sticky
+      #posts-form
+        = render 'user/posts/form', post: @post
+
+    %h4 Posts
+    #posts-list
+      - if @posts.count > 0
+        = render 'user/posts/posts', posts: @posts
+      - else
+        %p.margin-0 There is no post(s) here.
