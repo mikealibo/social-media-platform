@@ -1,7 +1,6 @@
 .grid-x.grid-margin-x.grid-margin-y.margin-top-1
   .cell.large-8.large-offset-2
-    .sticky
-      #posts-form
-        = render 'user/posts/form', post: @post
+    #posts-form
+      = render 'user/posts/form', post: @post
     #posts.grid-x.grid-margin-x.grid-margin-y
       = render 'user/posts/posts', posts: @posts

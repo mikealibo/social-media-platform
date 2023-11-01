@@ -30,13 +30,13 @@ class User::CommentsController < User::BaseController
           render turbo_stream: [
             turbo_stream.prepend("comments_post_#{@post.id}",
               partial: 'user/comments/comment', 
-              locals: { 
+              locals: {
                 comment: @comment
               }
             ),
             turbo_stream.replace("post_#{@post.id}_new_comment",
               partial: 'user/comments/form',
-              locals: { 
+              locals: {
                 model: [@post, @post.comments.build],
                 resource: @post
               }
@@ -46,9 +46,9 @@ class User::CommentsController < User::BaseController
       else
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace("post_#{@post.id}_new_comment", 
+            turbo_stream.replace("post_#{@post.id}_new_comment",
               partial: 'user/comments/form',
-              locals: { 
+              locals: {
                 model: [@post, @post.comments.build],
                 resource: @comment
               }
