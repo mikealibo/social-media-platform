@@ -3,3 +3,13 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "trix"
 import "@rails/actiontext"
+
+import jquery from "jquery"
+import "foundation-sites"
+
+window.jQuery = jquery
+window.$ = jquery
+
+$(function() {
+  $(document).foundation();
+})
