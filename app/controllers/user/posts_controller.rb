@@ -54,7 +54,6 @@ class User::PostsController < User::BaseController
         end
       end
     end
-
   end
 
   def update

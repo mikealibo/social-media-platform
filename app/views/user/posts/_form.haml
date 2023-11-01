@@ -1,14 +1,6 @@
 = simple_form_for(post) do |f|
-  -# = f.error_notification
-  -# = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-  - if post.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(post.errors.count, "error")
-        prohibited this user from being saved:
-      %ul
-        - post.errors.full_messages.each do |message|
-          %li= message
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   = f.input :content, label: false, placeholder: "What's on your mind?", input_html: { rows: '5' }
-  = f.button :submit, 'Post', class: 'button expanded font-bold'
+  = f.button :submit, 'Create Post', class: 'button expanded font-bold'
