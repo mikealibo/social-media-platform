@@ -1,4 +1,4 @@
-= simple_form_for(model, html: { class: 'margin-top-1', id: "#{resource.class.name == "Post" ? "#{dom_id(resource)}" : "post_#{resource.post_id}"}_new_comment" }) do |f|
+= simple_form_for(model, html: { id: "#{resource.class.name == "Post" ? "#{dom_id(resource)}" : "post_#{resource.post_id}"}_new_comment" }) do |f|
   - if resource.errors.any?
     #error_explanation
       %h2

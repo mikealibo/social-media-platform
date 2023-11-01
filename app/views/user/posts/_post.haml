@@ -1,7 +1,10 @@
-%p= post.content
-%p
-  %small= "- #{post.user.email}"
-= render 'user/posts/actions', post: post
+.grid-x
+  .cell.large-8
+    %p= post.content
+    %p
+      %small= "- #{post.user.email}"
+  .cell.large-4
+    = render 'user/posts/actions', post: post
 = render 'user/comments/form', model: [post, post.comments.build], resource: post
 
 = render 'user/comments/comments', record: post, comments: post.total_comments_to_display.order(id: :desc)

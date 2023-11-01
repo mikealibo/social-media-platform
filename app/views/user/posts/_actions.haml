@@ -1,4 +1,4 @@
-.button-group
+.button-group.align-right
   = link_to 'View', post, class: 'button' if can?(:read, post)
   = button_to 'Edit', edit_post_path(post), method: :post, class: 'button warning' if can?(:edit, post)
   - if can?(:destroy, post)
