@@ -53,6 +53,6 @@ class User::ProfilesController < User::BaseController
   end
 
   def user_params
-    params.require(:user).permit(:bio_information, :email, :username, :first_name, :middle_name, :last_name)
+    params.require(:user).permit(:profile_picture, :bio_information, :email, :username, :first_name, :middle_name, :last_name)
   end
 end

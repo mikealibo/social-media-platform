@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  mount_uploader :profile_picture, ProfilePictureUploader
+
   rolify
   # Include default devise modules. Others available are:
   # :omniauthable
