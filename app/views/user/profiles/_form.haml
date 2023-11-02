@@ -9,10 +9,12 @@
   -#     %ul
   -#       - user.errors.full_messages.each do |message|
   -#         %li= message
-  = f.input :bio_information, input_html: { rows: "3" }
-  = f.input :email
-  = f.input :username
-  = f.input :first_name
-  = f.input :middle_name
-  = f.input :last_name
-  = f.button :submit, 'Save', class: 'button expanded font-bold'
+  = f.input :bio_information, input_html: { rows: "3", placeholder: "Set you bio here..." }, label: false
+
+  - [:email, :username, :first_name, :middle_name, :last_name].each do |column|
+    .grid-x
+      .cell.large-3
+        = f.label column.to_sym
+      .cell.large-9
+        = f.input column.to_sym, label: false
+  = f.button :submit, 'Save', class: 'float-right button font-bold small'

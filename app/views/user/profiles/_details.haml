@@ -1,26 +1,8 @@
+%h5.margin-bottom-0.text-center
+  = user.username.present? ? "(#{user.username}) - " : '-'
+  = user.full_name
+%p.text-center= user.email.present? ? user.email : '-'
 %p
-  %b Bio Information:
-  %span.pull-right
-    = user.bio_information.present? ? user.bio_information : '-'
-%p
-  %b Email:
-  %span.pull-right
-    = user.email.present? ? user.email : '-'
-%p
-  %b Username:
-  %span.pull-right
-    = user.username.present? ? user.username : '-'
-%p
-  %b First Name:
-  %span.pull-right
-    = user.first_name.present? ? user.first_name : '-'
-%p
-  %b Middle Name:
-  %span.pull-right
-    = user.middle_name.present? ? user.middle_name : '-'
-%p
-  %b Last Name:
-  %span.pull-right
-    = user.last_name.present? ? user.last_name : '-'
+  = user.bio_information.present? ? user.bio_information : '-'
 
 = button_to "Update Profile", edit_profile_path, class: 'warning button pull-right small'
