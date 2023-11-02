@@ -1,40 +1,56 @@
 # frozen_string_literal: true
 
 class User::ProfilesController < User::BaseController
-  def edit; end
+  before_action :set_user, only: [:edit, :update]  
 
-  def show; end
+  def edit
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update("profile", 
+            partial: 'user/profiles/form',
+            locals: {
+              user: @user
+            }
+          )
+        ]
+      end
+    end
+  end
 
   def update
     respond_to do |format|
-      if current_user.update(user_params)
-        format.html { redirect_to profile_path, notice: "Profile has been updated." }
-        # format.turbo_stream do
-        #   render turbo_stream: [
-        #     turbo_stream.replace(@post, 
-        #       partial: 'user/posts/post', 
-        #       locals: { 
-        #         post: @post
-        #       }
-        #     )
-        #   ]
-        # end
+      if @user.update(user_params)
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update("profile", 
+              partial: 'user/profiles/details',
+              locals: {
+                user: @user
+              }
+            )
+          ]
+        end
       else
-        # format.turbo_stream do
-        #   render turbo_stream: [
-        #     turbo_stream.update('post-form', 
-        #       partial: 'user/posts/form',
-        #       locals: { 
-        #         post: @post
-        #       }
-        #     )
-        #   ]
-        # end
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("edit_user_#{@user.id}",
+              partial: 'user/profiles/form',
+              locals: {
+                user: @user
+              }
+            )
+          ]
+        end
       end
     end
   end
 
   private
+
+  def set_user
+    @user = User.find(current_user.id)
+  end
 
   def user_params
     params.require(:user).permit(:bio_information, :email, :username, :first_name, :middle_name, :last_name)

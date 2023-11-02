@@ -9,6 +9,14 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  validates :email,
+            presence: true, on: :create
+
+  validates :first_name,
+            :middle_name,
+            :last_name,
+            presence: true, on: :update
+
   after_create :assign_default_role
 
   def assign_default_role
