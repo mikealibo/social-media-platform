@@ -28,7 +28,6 @@
 * Manage their accounts.
   - Change Email/Username
   - Change password
-    - Current Password
     - New Password
     - Retype new password
 * Profile creation: 
