@@ -11,7 +11,7 @@
   -#         %li= message
   = f.input :bio_information, input_html: { rows: "5", placeholder: "Set you bio here..." }, label: false
 
-  - [:email, :username, :first_name, :middle_name, :last_name].each do |column|
+  - [:profile_picture, :email, :username, :first_name, :middle_name, :last_name].each do |column|
     .grid-x
       .cell.large-3
         = f.label column.to_sym

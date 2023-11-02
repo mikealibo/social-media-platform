@@ -1,5 +1,5 @@
 .button-group.align-right.small
-  = button_to 'View', post_path(post), class: 'button' if can?(:read, post) && controller_name =='public'
+  = button_to 'View', post_path(post), class: 'button' if can?(:read, post)
   = button_to 'Edit', edit_post_path(post), method: :post, class: 'button warning' if can?(:edit, post)
   - if can?(:destroy, post)
     = link_to post, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "button alert" do
