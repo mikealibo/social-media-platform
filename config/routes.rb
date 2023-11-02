@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   scope module: 'user' do
     resource :profile, only: [:update] do
       post :edit
+      post :password
+      put :update_password
     end
 
     resources :posts, except: [:show, :index, :edit] do

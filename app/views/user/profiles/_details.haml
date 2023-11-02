@@ -1,9 +1,12 @@
 .text-center
-  = image_tag user.profile_picture.url, class: 'profile-picture'
+  = image_tag user.profile_picture.url, class: 'profile-picture' if user.profile_picture.present?
   %h5.margin-bottom-0.margin-top-1
     = user.username.present? ? "(#{user.username}) - " : '-'
     = user.full_name
   %p= user.email.present? ? user.email : '-'
+
+.button-group.align-center
   = button_to "Update Profile", edit_profile_path, class: 'warning button small'
+  = button_to "Change Password", password_profile_path, class: 'warning button small'
 %p
   = user.bio_information.present? ? user.bio_information : '-'
