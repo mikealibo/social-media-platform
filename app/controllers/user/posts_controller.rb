@@ -5,7 +5,20 @@ class User::PostsController < User::BaseController
 
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update('main',
+            partial: 'user/posts/styled/post',
+            locals: {
+              post: @post
+            }
+          )
+        ]
+      end
+    end
+  end
 
   def edit
     respond_to do |format|
