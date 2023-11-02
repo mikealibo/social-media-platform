@@ -1,0 +1,33 @@
+%h5
+  Edit Password
+= simple_form_for(resource, as: resource_name, url: update_password_profile_path, html: { method: :put }, data: { turbo: true }) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .grid-x
+    .cell.large-3
+      = f.label :password
+    .cell.large-9
+      = f.input :password, autocomplete: "new-password", label: false, input_html: { class: "margin-bottom-0" }
+      %i
+        %small (leave blank if you don't want to change it)
+      - if @minimum_password_length
+        %br/
+        %em
+          = @minimum_password_length
+          characters minimum
+  
+  .grid-x
+    .cell.large-3
+      = f.label :password_confirmation
+    .cell.large-9
+      = f.input :password_confirmation, autocomplete: "new-password", label: false, input_html: { class: "margin-bottom-0" }
+
+  .actions.clearfix
+    = f.submit "Update", class: 'button pull-right'
+
+%h5 Unhappy to your account?
+.button-group
+  = link_to "Back", :back, class: "button"
+  = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'button alert'
+
