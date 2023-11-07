@@ -32,13 +32,13 @@
     - Retype new password
 * Profile creation: 
   - Allow users to create and edit their own personal profiles, including uploading profile pictures and adding bio information.
-* Posts and comments
+* [WIP]Posts and comments
   - Users should be able to create, edit, and delete their own posts and comments.
-* Friendships and follower system
+* [WIP]Friendships and follower system
   - Implement a system for users to send friend requests and follow other users.
-* Newsfeed
+* [WIP]Newsfeed
   - Display posts from friends and people the user follows in a chronological order.
-* Notifications
+* [WIP]Notifications
   - Notify users of new friend requests, comments, and likes on their posts.
-* Search functionality
+* [WIP]Search functionality
   - Allow users to search for other users and posts by keywords or hashtags.
