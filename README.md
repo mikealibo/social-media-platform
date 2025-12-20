@@ -32,7 +32,7 @@
     - Retype new password
 * Profile creation: 
   - Allow users to create and edit their own personal profiles, including uploading profile pictures and adding bio information.
-* [WIP]Posts and comments
+* Posts and comments
   - Users should be able to create, edit, and delete their own posts and comments.
 * [WIP]Friendships and follower system
   - Implement a system for users to send friend requests and follow other users.
