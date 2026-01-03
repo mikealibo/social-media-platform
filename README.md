@@ -2,6 +2,8 @@
 
 * Ruby version
   - 3.1.2
+* Node version
+  - 18
 
 * Relational Database
   - [PostgreSQL](https://www.postgresql.org/)
