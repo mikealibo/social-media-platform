@@ -17,4 +17,6 @@
         = f.label column.to_sym
       .cell.large-9
         = f.input column.to_sym, label: false
-  = f.button :submit, 'Save', class: 'float-right button font-bold small'
+  .button-group
+    = link_to "Back", :back, class: "button"
+    = f.button :submit, 'Save', class: 'float-right button font-bold small'
